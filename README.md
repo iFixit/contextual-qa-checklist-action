@@ -63,7 +63,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Checklist
-        uses: batbattur/contextual-qa-checklist-action@master
+        uses: iFixit/contextual-qa-checklist-action@master
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
           # For custom location of the checklist file.
@@ -93,9 +93,9 @@ Example for the checklist file paths:
 
 When matching files are updated in a PR, the action will automatically post a checklist containing items under that path's key.
 
-See https://github.com/batbattur/All/pull/36#issuecomment-1055868189 for an example PR checklist.
-Example workflow: https://github.com/batbattur/All/blob/master/.github/workflows/checklist.yml
-Example checklist file: https://github.com/batbattur/All/blob/master/.github/QAchecklist.yml
+- Example comment https://github.com/batbattur/All/pull/36#issuecomment-1055868189.
+- Example workflow: https://github.com/batbattur/All/blob/master/.github/workflows/checklist.yml
+- Example checklist file: https://github.com/batbattur/All/blob/master/.github/QAchecklist.yml
 
 #### Contributing
 
