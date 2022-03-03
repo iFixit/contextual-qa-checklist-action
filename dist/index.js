@@ -14951,7 +14951,8 @@ function getMatchingPaths(checklistPaths, modifiedPaths) {
         for (const path in value.paths) {
             for (const modifiedPath of modifiedPaths) {
                 if (minimatch(modifiedPath, value.paths[path], minimatchOptions)) {
-                    changedPath.push(value.paths[path]);
+                    if (!changedPath.includes(value.paths[path]))
+                        changedPath.push(value.paths[path]);
                     isApplicable = true;
                 }
             }

@@ -45,7 +45,8 @@ function getMatchingPaths(checklistPaths, modifiedPaths) {
     for (const path in (value as any).paths){
       for (const modifiedPath of modifiedPaths) {
         if (minimatch(modifiedPath, (value as any).paths[path], minimatchOptions)) {
-          changedPath.push((value as any).paths[path])
+          if (!changedPath.includes((value as any).paths[path]))
+            changedPath.push((value as any).paths[path])
           isApplicable = true
         }
       }
