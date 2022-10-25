@@ -7,8 +7,8 @@ inputs:
     default: "Great PR! Please pay attention to the following items before merging:"
   comment-footer:
     description: "Footer text for the Github comment"
-    required: true
-    default: "This is an automatically generated QA checklist based on modified files"
+    required: false
+    default: ""
   include-hidden-files:
     description: "Includes files and folders starting with '.' in file pattern matching"
     required: true
