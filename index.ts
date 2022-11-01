@@ -7,6 +7,8 @@ const { readFileSync } = require("fs");
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer")
 
+console.log(footer);
+
 const minimatchOptions = {
   dot: core.getInput('include-hidden-files') === 'true'
 };
@@ -93,8 +95,7 @@ async function run() {
   if (applicableChecklistPaths.length > 0) {
     const body = [
       `${header}\n\n`,
-      formatItemsForPath(applicableChecklistPaths),
-      `\n${footer}`,
+      formatItemsForPath(applicableChecklistPaths)
     ].join("");
 
     if (existingComment) {
