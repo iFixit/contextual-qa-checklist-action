@@ -14916,6 +14916,7 @@ const minimatch = __nccwpck_require__(3973);
 const { readFileSync } = __nccwpck_require__(5747);
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer");
+console.log(footer);
 const minimatchOptions = {
     dot: core.getInput('include-hidden-files') === 'true'
 };
@@ -14987,12 +14988,11 @@ function run() {
             owner: owner,
             repo: repo,
             issue_number: number
-        })).data.find(comment => comment.body.includes(footer));
+        })).data.find(comment => comment.body.includes(header));
         if (applicableChecklistPaths.length > 0) {
             const body = [
                 `${header}\n\n`,
-                formatItemsForPath(applicableChecklistPaths),
-                `\n${footer}`,
+                formatItemsForPath(applicableChecklistPaths)
             ].join("");
             if (existingComment) {
                 yield client.rest.issues.updateComment({
