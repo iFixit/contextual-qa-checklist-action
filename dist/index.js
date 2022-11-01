@@ -14916,7 +14916,7 @@ const minimatch = __nccwpck_require__(3973);
 const { readFileSync } = __nccwpck_require__(5747);
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer");
-console.log(footer);
+console.log("Footer is " + footer);
 const minimatchOptions = {
     dot: core.getInput('include-hidden-files') === 'true'
 };

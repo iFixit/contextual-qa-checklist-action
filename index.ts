@@ -7,7 +7,7 @@ const { readFileSync } = require("fs");
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer")
 
-console.log(footer);
+console.log("Footer is " + footer);
 
 const minimatchOptions = {
   dot: core.getInput('include-hidden-files') === 'true'
