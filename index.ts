@@ -88,7 +88,7 @@ async function run() {
       repo: repo,
       issue_number: number
     })
-  ).data.find(comment => comment.body.includes(footer));
+  ).data.find(comment => comment.body.includes(header) && comment.user.login === "github-actions[bot]");
 
   if (applicableChecklistPaths.length > 0) {
     const body = [

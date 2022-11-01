@@ -8,7 +8,6 @@ inputs:
   comment-footer:
     description: "Footer text for the Github comment"
     required: false
-    default: ""
   include-hidden-files:
     description: "Includes files and folders starting with '.' in file pattern matching"
     required: true
