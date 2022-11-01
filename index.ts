@@ -93,6 +93,10 @@ async function run() {
     })
   ).data.find(comment => comment.body.includes(header));
 
+  if (existingComment) {
+    console.log('User of comment is: ' + existingComment.user.login);
+  }
+
   if (applicableChecklistPaths.length > 0) {
     console.log('Changed Paths found');
     const body = [
