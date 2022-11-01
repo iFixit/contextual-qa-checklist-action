@@ -88,28 +88,31 @@ async function run() {
       repo: repo,
       issue_number: number
     })
-  ).data.find(comment => comment.body.includes(footer));
+  ).data.find(comment => comment.body.includes(header) && comment.user.login === "github-actions[bot]");
 
   if (applicableChecklistPaths.length > 0) {
     const body = [
       `${header}\n\n`,
       formatItemsForPath(applicableChecklistPaths),
-      `\n${footer}`,
-    ].join("");
+    ]
+
+    if (footer) {
+      body.push(`\n${footer}`)
+    }
 
     if (existingComment) {
       await client.rest.issues.updateComment({
         owner: owner,
         repo: repo,
         comment_id: existingComment.id,
-        body
+        body: body.join("")
       });
     } else {
       await client.rest.issues.createComment({
         owner: owner,
         repo: repo,
         issue_number: number,
-        body
+        body: body.join("")
       });
     }
   } else {
