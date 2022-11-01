@@ -91,7 +91,7 @@ async function run() {
       repo: repo,
       issue_number: number
     })
-  ).data.find(comment => comment.body.includes(header));
+  ).data.find(comment => comment.body.includes(header) && comment.user.login === 'github-actions[bot]');
 
   if (existingComment) {
     console.log('User of comment is: ' + existingComment.user.login);
@@ -123,7 +123,7 @@ async function run() {
     }
   } else {
     if (existingComment) {
-      console.log('Deleting Comment: ' + existingComment.body_text);
+      console.log('Deleting Comment');
       await client.rest.issues.deleteComment({
         owner: owner,
         repo: repo,
