@@ -7,6 +7,7 @@ const { readFileSync } = require("fs");
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer")
 
+console.log("Header is " + header);
 console.log("Footer is " + footer);
 
 const minimatchOptions = {
@@ -93,12 +94,14 @@ async function run() {
   ).data.find(comment => comment.body.includes(header));
 
   if (applicableChecklistPaths.length > 0) {
+    console.log('Changed Paths found');
     const body = [
       `${header}\n\n`,
       formatItemsForPath(applicableChecklistPaths)
     ].join("");
 
     if (existingComment) {
+      console.log('Updating Comment');
       await client.rest.issues.updateComment({
         owner: owner,
         repo: repo,
@@ -106,6 +109,7 @@ async function run() {
         body
       });
     } else {
+      console.log('Creating Comment');
       await client.rest.issues.createComment({
         owner: owner,
         repo: repo,
@@ -115,6 +119,7 @@ async function run() {
     }
   } else {
     if (existingComment) {
+      console.log('Deleting Comment: ' + existingComment.body_text);
       await client.rest.issues.deleteComment({
         owner: owner,
         repo: repo,

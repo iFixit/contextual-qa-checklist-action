@@ -14916,6 +14916,7 @@ const minimatch = __nccwpck_require__(3973);
 const { readFileSync } = __nccwpck_require__(5747);
 const header = core.getInput("comment-header");
 const footer = core.getInput("comment-footer");
+console.log("Header is " + header);
 console.log("Footer is " + footer);
 const minimatchOptions = {
     dot: core.getInput('include-hidden-files') === 'true'
@@ -14990,11 +14991,13 @@ function run() {
             issue_number: number
         })).data.find(comment => comment.body.includes(header));
         if (applicableChecklistPaths.length > 0) {
+            console.log('Changed Paths found');
             const body = [
                 `${header}\n\n`,
                 formatItemsForPath(applicableChecklistPaths)
             ].join("");
             if (existingComment) {
+                console.log('Updating Comment');
                 yield client.rest.issues.updateComment({
                     owner: owner,
                     repo: repo,
@@ -15003,6 +15006,7 @@ function run() {
                 });
             }
             else {
+                console.log('Creating Comment');
                 yield client.rest.issues.createComment({
                     owner: owner,
                     repo: repo,
@@ -15013,6 +15017,7 @@ function run() {
         }
         else {
             if (existingComment) {
+                console.log('Deleting Comment: ' + existingComment.body_text);
                 yield client.rest.issues.deleteComment({
                     owner: owner,
                     repo: repo,
